@@ -1,0 +1,124 @@
+<mxfile host="app.diagrams.net" modified="2026-09-14T00:00:00.000Z" agent="Claude" version="24.7.5" type="device">
+  <diagram name="SequenceDiagram_Locker_Fixed" id="seq-locker-fixed">
+    <mxGraphModel dx="1400" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="900" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <!-- Title -->
+        <mxCell id="title" value="Sequence Diagram (Da sua) - Nhan hang tai Locker - Rikkei Logistics Smart Locker" style="text;html=1;fontSize=16;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="40" y="10" width="1000" height="30" as="geometry" />
+        </mxCell>
+
+        <!-- Actor: KhachNhanHang -->
+        <mxCell id="actor" value="KhachNhanHang" style="shape=umlActor;verticalLabelPosition=bottom;labelBackgroundColor=#ffffff;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
+          <mxGeometry x="60" y="60" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="actorLife" value="" style="html=1;points=[];perimeter=none;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="74" y="120" width="1" height="700" as="geometry" />
+        </mxCell>
+
+        <!-- Object: LockerTerminal -->
+        <mxCell id="termHead" value="LockerTerminal" style="html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;whiteSpace=wrap;verticalAlign=middle;align=center;" vertex="1" parent="1">
+          <mxGeometry x="300" y="60" width="170" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="termLife" value="" style="html=1;points=[];perimeter=none;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="384" y="100" width="1" height="720" as="geometry" />
+        </mxCell>
+        <mxCell id="termAct1" value="" style="html=1;whiteSpace=wrap;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="378" y="150" width="12" height="600" as="geometry" />
+        </mxCell>
+
+        <!-- Object: PackageService -->
+        <mxCell id="pkgHead" value="PackageService" style="html=1;fillColor=#d5e8d4;strokeColor=#82b366;whiteSpace=wrap;verticalAlign=middle;align=center;" vertex="1" parent="1">
+          <mxGeometry x="720" y="60" width="180" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="pkgLife" value="" style="html=1;points=[];perimeter=none;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="809" y="100" width="1" height="700" as="geometry" />
+        </mxCell>
+        <mxCell id="pkgAct1" value="" style="html=1;whiteSpace=wrap;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="803" y="190" width="12" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- Message 1: Actor -> Terminal : nhap OTP (Sync) -->
+        <mxCell id="msg1" value="1: nhap_OTP(maOTP)  [Sync]" style="html=1;edgeStyle=none;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="actorLife" target="termAct1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="75" y="150" as="sourcePoint" />
+            <mxPoint x="378" y="150" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- Message 2: Terminal -> PackageService : verify_otp (Sync) -->
+        <mxCell id="msg2" value="2: verify_otp(maOTP)  [Sync]" style="html=1;edgeStyle=none;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="termAct1" target="pkgAct1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="390" y="200" as="sourcePoint" />
+            <mxPoint x="803" y="200" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- ALT combined fragment frame -->
+        <mxCell id="altFrame" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#000000;verticalAlign=top;align=left;" vertex="1" parent="1">
+          <mxGeometry x="330" y="290" width="540" height="320" as="geometry" />
+        </mxCell>
+        <mxCell id="altPent" value="alt" style="shape=singleArrow;direction=east;html=1;fillColor=#f5f5f5;strokeColor=#000000;fontStyle=1;fontSize=11;arrowWidth=0.6;arrowSize=0.3;align=center;" vertex="1" parent="1">
+          <mxGeometry x="330" y="290" width="54" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="altGuard1" value="[OTP dung]" style="text;html=1;fontSize=11;fontStyle=2;align=left;" vertex="1" parent="1">
+          <mxGeometry x="395" y="294" width="150" height="18" as="geometry" />
+        </mxCell>
+        <mxCell id="altDivider" value="" style="html=1;dashed=1;strokeColor=#000000;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="330" y="450" as="sourcePoint" />
+            <mxPoint x="870" y="450" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="altGuard2" value="else  [OTP sai]" style="text;html=1;fontSize=11;fontStyle=2;align=left;" vertex="1" parent="1">
+          <mxGeometry x="340" y="454" width="150" height="18" as="geometry" />
+        </mxCell>
+
+        <!-- Branch 1 (OTP dung): message 3a return, 4a sync -->
+        <mxCell id="msg3a" value="3a: return OTP_hop_le  [Return]" style="html=1;edgeStyle=none;endArrow=open;endFill=0;dashed=1;fontSize=11;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="pkgAct1" target="termAct1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="803" y="340" as="sourcePoint" />
+            <mxPoint x="390" y="340" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="msg4a" value="4a: &quot;Mo tu thanh cong&quot;  [Sync]" style="html=1;edgeStyle=none;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="termAct1" target="actorLife">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="378" y="390" as="sourcePoint" />
+            <mxPoint x="75" y="390" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- Branch 2 (OTP sai): message 3b return, 4b sync -->
+        <mxCell id="msg3b" value="3b: return OTP_khong_hop_le  [Return]" style="html=1;edgeStyle=none;endArrow=open;endFill=0;dashed=1;fontSize=11;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="pkgAct1" target="termAct1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="803" y="500" as="sourcePoint" />
+            <mxPoint x="390" y="500" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="msg4b" value="4b: &quot;Ma OTP khong dung, vui long thu lai&quot;  [Sync]" style="html=1;edgeStyle=none;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="termAct1" target="actorLife">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="378" y="560" as="sourcePoint" />
+            <mxPoint x="75" y="560" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- Legend -->
+        <mxCell id="legendBox" value="Chu thich" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontStyle=1;align=left;verticalAlign=top;spacing=6;" vertex="1" parent="1">
+          <mxGeometry x="60" y="650" width="980" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="legend1" value="Sync (Dong bo): mui ten lien net, dau mui ten dac -&gt; thong diep 1, 2, 4a, 4b" style="text;html=1;fontSize=11;align=left;" vertex="1" parent="1">
+          <mxGeometry x="75" y="672" width="900" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="legend2" value="Return (Phan hoi): mui ten net dut, dau mui ten ho -&gt; thong diep 3a, 3b" style="text;html=1;fontSize=11;align=left;" vertex="1" parent="1">
+          <mxGeometry x="75" y="692" width="900" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="legend3" value="Khoi alt / else: nhan alt goc tren trai, duong ke ngang net dut phan tach 2 nhanh, moi nhanh co dieu kien guard trong dau [ ]" style="text;html=1;fontSize=11;align=left;" vertex="1" parent="1">
+          <mxGeometry x="75" y="712" width="900" height="20" as="geometry" />
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
